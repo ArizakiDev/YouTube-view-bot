@@ -24,7 +24,7 @@ def get_driver(browser):
         return webdriver.Chrome(ChromeDriverManager().install())
 
     elif browser.lower() in firefox:
-        return webdriver.Firefox(executable_path=GeckoDriverManager().install())
+        return webdriver.Firefox(service=webdriver.firefox.service.Service(GeckoDriverManager().install()))
 
     elif browser.lower() in opera:
         return webdriver.Opera(OperaDriverManager().install())
@@ -33,7 +33,7 @@ def get_driver(browser):
         return webdriver.Ie(IEDriverManager().install())
 
     elif browser.lower() in edge:
-        return webdriver.Edge(executable_path=EdgeChromiumDriverManager().install())
+        return webdriver.Edge(service=webdriver.edge.service.Service(EdgeChromiumDriverManager().install()))
 
     else:
         raise RuntimeError('Browser not found {}'.format(browser.lower()))
